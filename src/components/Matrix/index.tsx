@@ -1,8 +1,8 @@
 import React, {
-  useContext, useEffect, useMemo, useState, useCallback,
+  useEffect, useMemo, useState, useCallback,
 } from 'react';
 import { ITableItem } from '../../App';
-import MyContext from '../../context/MyContext';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 import s from './Matrix.module.scss';
 import MatrixRow from './MatrixRow';
 
@@ -12,7 +12,7 @@ interface IAvgValue {
 }
 
 function Matrix() {
-  const { data, matrix } = useContext(MyContext);
+  const { matrix, data } = useTypedSelector((state) => state.matrix);
   const [avgValues, setAvgValues] = useState<IAvgValue[]>([]);
   const columns = useMemo(() => {
     const arr = [];

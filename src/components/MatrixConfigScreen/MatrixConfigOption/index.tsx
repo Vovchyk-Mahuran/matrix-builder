@@ -1,17 +1,14 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import { ITableData } from '../../../App';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import s from './MatrixConfigOption.module.scss';
 
 interface OptionProps {
     option: string
-    setData: Dispatch<SetStateAction<ITableData>>
 }
-function MatrixConfigOption({ option, setData }: OptionProps) {
+function MatrixConfigOption({ option }: OptionProps) {
+  const dispatch = useDispatch();
   const changeHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
-    setData((prev:ITableData) => ({
-      ...prev,
-      [e.target.name]: +e.target.value,
-    }));
+    dispatch({ type: 'CHANGE__MATRIX__DATA', payload: e.target });
   };
 
   return (

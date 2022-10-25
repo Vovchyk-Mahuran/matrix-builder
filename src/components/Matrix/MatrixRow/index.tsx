@@ -1,8 +1,9 @@
 import React, {
-  useContext, useState, useEffect, useCallback,
+  useState, useEffect, useCallback,
 } from 'react';
+import { useDispatch } from 'react-redux';
 import { ITableItem } from '../../../App';
-import MyContext from '../../../context/MyContext';
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import s from './MatrixRow.module.scss';
 
 interface IRowData {
@@ -12,11 +13,10 @@ interface IRowData {
 function MatrixRow({
   rowData, position,
 }: IRowData) {
-  const {
-    closestElements, setClosestElements, clickCellHandler, mouseEnterCellHandler, deleteTableRow,
-  } = useContext(MyContext);
+  const { closestElements } = useTypedSelector((state) => state.matrix);
   const [sum, setSum] = useState(0);
   const [sumMouseEnter, setSumMouseEnter] = useState(false);
+  const dispatch = useDispatch();
 
   const getPercentage = useCallback((cell:ITableItem) => `${Math.round((cell.amount * 100) / sum)}%`, [sum]);
 
@@ -36,9 +36,9 @@ function MatrixRow({
       {rowData.map((cell) => (
         <td
           role="presentation"
-          onClick={() => clickCellHandler(cell.id)}
-          onMouseEnter={() => mouseEnterCellHandler(cell.id)}
-          onMouseLeave={() => setClosestElements([])}
+          onClick={() => dispatch({ type: 'CLICK__CELL', payload: cell.id })}
+          onMouseEnter={() => dispatch({ type: 'CELL__MOUSE__ENTER', payload: cell.id })}
+          onMouseLeave={() => dispatch({ type: 'RESET__CLOSEST' })}
           className={s.matrix__cell}
           key={cell.id}
           style={stylesFunc(cell)}
@@ -56,7 +56,7 @@ function MatrixRow({
       <td
         role="presentation"
         className={s['matrix__cell--delete']}
-        onClick={() => deleteTableRow(position - 1)}
+        onClick={() => dispatch({ type: 'DELETE__MATRIX__ROW', payload: position - 1 })}
       >
         x
       </td>
