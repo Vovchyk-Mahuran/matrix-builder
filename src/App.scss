@@ -1,0 +1,23 @@
+@use './assets/styles/variables.scss' as v;
+@use './assets/styles/mixins.scss' as m;
+
+.App {
+  width: 100%;
+  height: 100%;
+
+  &__configureScreen {
+    height: 100vh;
+    background-color: v.$green;
+    @include m.flex(center, center, column);
+    color: v.$white;
+  }
+
+  &__createRow {
+    padding: 20px 30px;
+    @include m.resetBtn(12px);
+    font: 600 20px/25px 'Open Sans';
+    background: v.$yellow;
+    margin-bottom: 30px;
+    cursor: pointer;
+  }
+}
