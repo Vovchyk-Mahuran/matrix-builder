@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/matrix-builder/static/css/main.57747488.css",
+    "main.js": "/matrix-builder/static/js/main.ecdc4642.js",
+    "index.html": "/matrix-builder/index.html",
+    "main.57747488.css.map": "/matrix-builder/static/css/main.57747488.css.map",
+    "main.ecdc4642.js.map": "/matrix-builder/static/js/main.ecdc4642.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.57747488.css",
+    "static/js/main.ecdc4642.js"
+  ]
+}
