@@ -1,0 +1,12 @@
+@mixin flex($justifyContent:center, $alignItems: center, $flexDirection: row){
+    display: flex;
+    justify-content: $justifyContent;
+    align-items: $alignItems;
+    flex-direction: $flexDirection;
+}
+
+@mixin resetBtn($borderRadius:0){
+    border: none;
+    outline:none;
+    border-radius: $borderRadius;
+}

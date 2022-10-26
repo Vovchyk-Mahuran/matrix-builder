@@ -1,0 +1,30 @@
+@use '../../../assets/styles/variables.scss' as v;
+
+.matrix__cell {
+    background: v.$cellBg;
+    border-radius: 8px;
+    width: 80px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: v.$cellHover;
+        color: v.$white;
+    }
+
+    &--number {
+        background: transparent;
+        padding: v.$defaultPadding;
+    }
+
+    &--sum {
+        background: v.$sumAvgBg;
+        padding: v.$defaultPadding;
+        color: v.$white;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    
+    &--delete {
+        cursor: pointer;
+    }
+}
