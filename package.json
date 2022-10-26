@@ -1,5 +1,6 @@
 {
   "name": "matrix-builder",
+  "homepage": "https://vovchyk-mahuran.github.io/matrix-builder",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,11 +18,14 @@
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
     "sass": "^1.55.0",
+    "save-dev": "^0.0.1-security",
     "typescript": "^4.8.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy":"npm run build",
+    "deploy":"gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -47,6 +51,7 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-react": "^7.31.10",
-    "eslint-plugin-react-hooks": "^4.6.0"
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "gh-pages": "^4.0.0"
   }
 }
