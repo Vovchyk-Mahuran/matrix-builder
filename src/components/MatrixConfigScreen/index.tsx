@@ -1,20 +1,18 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import { ITableData } from '../../App';
+import React from 'react';
 import MatrixConfigOption from './MatrixConfigOption';
 import s from './MatrixConfigScreen.module.scss';
 
 const options = ['rows', 'columns', 'cells'];
 interface IMatrixConfigProps {
-    setData: Dispatch<SetStateAction<ITableData>>,
     createMatrix: () => void
 }
 
-function MatrixConfigScreen({ setData, createMatrix }:IMatrixConfigProps) {
+function MatrixConfigScreen({ createMatrix }:IMatrixConfigProps) {
   return (
     <div className={s.container}>
       <h1 className={s.container__title}>Matrix builder</h1>
       <div className={s.container__options}>
-        {options.map((option) => <MatrixConfigOption setData={setData} option={option} />)}
+        {options.map((option) => <MatrixConfigOption key={option} option={option} />)}
       </div>
       <button
         onClick={createMatrix}
