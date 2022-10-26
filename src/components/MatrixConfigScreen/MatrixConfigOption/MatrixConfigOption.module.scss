@@ -1,0 +1,16 @@
+@use '../../../assets/styles/mixins.scss' as m;
+
+.option {
+  @include m.flex(space-between);
+  font: 600 20px/30px 'Open Sans'; 
+
+  &__counter {
+    width: 60px;
+    padding: 5px 10px;
+    @include m.resetBtn(5px);
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}

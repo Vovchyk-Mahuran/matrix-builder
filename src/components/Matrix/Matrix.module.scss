@@ -1,0 +1,17 @@
+@use '../../assets/styles/variables.scss' as v;
+
+.matrix {
+    max-width: 400px;
+    margin: 0 auto;
+    border-spacing: 10px;
+    text-align: center;
+    color: v.$black;
+    font: 600 20px/25px 'Open Sans';
+
+    &__avg {
+        padding: v.$defaultPadding;
+        color: v.$white;
+        border-radius: 8px;
+        background: v.$sumAvgBg;
+    }
+}
