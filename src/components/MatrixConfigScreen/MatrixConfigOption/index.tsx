@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { MatrixActionTypes } from '../../../types/matrix';
 import s from './MatrixConfigOption.module.scss';
 
 interface OptionProps {
@@ -8,7 +9,7 @@ interface OptionProps {
 function MatrixConfigOption({ option }: OptionProps) {
   const dispatch = useDispatch();
   const changeHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
-    dispatch({ type: 'CHANGE__MATRIX__DATA', payload: e.target });
+    dispatch({ type: MatrixActionTypes.CHANGE__MATRIX__DATA, payload: e.target });
   };
 
   return (

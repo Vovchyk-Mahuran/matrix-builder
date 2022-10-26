@@ -4,6 +4,7 @@ import React, {
 import { useDispatch } from 'react-redux';
 import { ITableItem } from '../../../App';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
+import { MatrixActionTypes } from '../../../types/matrix';
 import s from './MatrixRow.module.scss';
 
 interface IRowData {
@@ -36,9 +37,12 @@ function MatrixRow({
       {rowData.map((cell) => (
         <td
           role="presentation"
-          onClick={() => dispatch({ type: 'CLICK__CELL', payload: cell.id })}
-          onMouseEnter={() => dispatch({ type: 'CELL__MOUSE__ENTER', payload: cell.id })}
-          onMouseLeave={() => dispatch({ type: 'RESET__CLOSEST' })}
+          onClick={() => dispatch({ type: MatrixActionTypes.CLICK__CELL, payload: cell.id })}
+          onMouseEnter={() => dispatch({
+            type: MatrixActionTypes.CELL__MOUSE__ENTER,
+            payload: cell.id,
+          })}
+          onMouseLeave={() => dispatch({ type: MatrixActionTypes.RESET__CLOSEST })}
           className={s.matrix__cell}
           key={cell.id}
           style={stylesFunc(cell)}
@@ -56,7 +60,10 @@ function MatrixRow({
       <td
         role="presentation"
         className={s['matrix__cell--delete']}
-        onClick={() => dispatch({ type: 'DELETE__MATRIX__ROW', payload: position - 1 })}
+        onClick={() => dispatch({
+          type: MatrixActionTypes.DELETE__MATRIX__ROW,
+          payload: position - 1,
+        })}
       >
         x
       </td>

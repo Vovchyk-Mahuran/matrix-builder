@@ -7,6 +7,7 @@ import './App.scss';
 import Matrix from './components/Matrix';
 import MatrixConfigScreen from './components/MatrixConfigScreen';
 import { useTypedSelector } from './hooks/useTypedSelector';
+import { MatrixActionTypes } from './types/matrix';
 
 export interface ITableData {
     rows: number,
@@ -32,7 +33,7 @@ function App() {
         amount: Math.floor(Math.random() * (999 - 100 + 1) + 100),
       });
     }
-    dispatch({ type: 'ADD__MATRIX__ROW', payload: row });
+    dispatch({ type: MatrixActionTypes.ADD__MATRIX__ROW, payload: row });
   };
 
   const createMatrix = (): void => {
@@ -61,7 +62,7 @@ function App() {
                 type="button"
                 onClick={() => {
                   createTableRow();
-                  dispatch({ type: 'INCREASE__DATA__ROWS' });
+                  dispatch({ type: MatrixActionTypes.INCREASE__DATA__ROWS });
                 }}
               >
                 Add row

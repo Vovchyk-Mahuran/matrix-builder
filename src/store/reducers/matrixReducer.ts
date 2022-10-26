@@ -1,3 +1,4 @@
+import { findClosestElements } from '../../helpers';
 import { MatrixAction, MatrixActionTypes, MatrixState } from '../../types/matrix';
 
 const initialValue: MatrixState = {
@@ -30,18 +31,15 @@ export const matrixReducer = (state = initialValue, action: MatrixAction): Matri
     case MatrixActionTypes.CLICK__CELL:
       return {
         ...state,
-        matrix: state.matrix.map((item) => item.map((n) => {
-          if (n.id === action.payload) return { ...n, amount: n.amount + 1 };
-          return n;
-        })),
+        matrix: state.matrix.map((item) => item.map((n) => (n.id === action.payload
+          ? { ...n, amount: n.amount + 1 }
+          : n))),
       };
     case MatrixActionTypes.CELL__MOUSE__ENTER: {
-      const flatMatrix = state.matrix.flat(1);
-      const cell = flatMatrix.find((item) => item.id === action.payload);
-      const sortedMatrix = cell && flatMatrix
-        .sort((a, b) => Math.abs(a.amount - cell.amount) - Math.abs(cell.amount - b.amount))
-        .slice(1, state.data.cells + 1);
-      return { ...state, closestElements: sortedMatrix || [] };
+      return {
+        ...state,
+        closestElements: findClosestElements(state.matrix, action.payload, state.data.cells) || [],
+      };
     }
     case MatrixActionTypes.RESET__CLOSEST:
       return { ...state, closestElements: [] };
