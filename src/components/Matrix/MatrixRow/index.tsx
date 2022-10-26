@@ -32,7 +32,7 @@ function MatrixRow({
 
   return (
     <tr className={s.matrix__row}>
-      <td className={s.matrix__cell__number}>{position}</td>
+      <td className={s['matrix__cell--number']}>{position}</td>
       {rowData.map((cell) => (
         <td
           role="presentation"
@@ -47,7 +47,7 @@ function MatrixRow({
         </td>
       ))}
       <td
-        className={s.matrix__cell__sum}
+        className={s['matrix__cell--sum']}
         onMouseEnter={() => setSumMouseEnter(true)}
         onMouseLeave={() => setSumMouseEnter(false)}
       >
@@ -55,7 +55,7 @@ function MatrixRow({
       </td>
       <td
         role="presentation"
-        className={s.matrix__cell__delete}
+        className={s['matrix__cell--delete']}
         onClick={() => deleteTableRow(position - 1)}
       >
         x

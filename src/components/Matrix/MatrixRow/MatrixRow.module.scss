@@ -11,12 +11,12 @@
         color: v.$white;
     }
 
-    &__number {
+    &--number {
         background: transparent;
         padding: v.$defaultPadding;
     }
 
-    &__sum {
+    &--sum {
         background: v.$sumAvgBg;
         padding: v.$defaultPadding;
         color: v.$white;
@@ -24,7 +24,7 @@
         cursor: pointer;
     }
     
-    &__delete {
+    &--delete {
         cursor: pointer;
     }
 }

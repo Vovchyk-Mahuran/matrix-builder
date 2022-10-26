@@ -6,9 +6,14 @@ import MyContext from '../../context/MyContext';
 import s from './Matrix.module.scss';
 import MatrixRow from './MatrixRow';
 
+interface IAvgValue {
+    id: number,
+    value: number
+}
+
 function Matrix() {
   const { data, matrix } = useContext(MyContext);
-  const [avgValues, setAvgValues] = useState<number[]>([]);
+  const [avgValues, setAvgValues] = useState<IAvgValue[]>([]);
   const columns = useMemo(() => {
     const arr = [];
     for (let i = 1; i <= data.columns; i += 1) {
@@ -24,7 +29,8 @@ function Matrix() {
         for (let j = 0; j < data.rows; j += 1) {
           sum += arr[j][i].amount;
         }
-        setAvgValues((prev) => [...prev, Math.floor(sum / data.rows)]);
+        setAvgValues((prev) => [...prev,
+          { id: Math.random(), value: Math.floor(sum / data.rows) }]);
       }
     }
   }, [data.rows, data.columns]);
@@ -39,7 +45,7 @@ function Matrix() {
       <tbody>
         <tr className={s.matrix__row}>
           <td>№</td>
-          {columns.map((c) => <td key={c * Math.random()}>{c}</td>)}
+          {columns.map((c) => <td key={c}>{c}</td>)}
           <td>Sum</td>
         </tr>
         {matrix.map((item, index) => (
@@ -51,8 +57,8 @@ function Matrix() {
         ))}
         <tr className={s.matrix__row}>
           <td>Avg</td>
-          {avgValues.map((v) => <td className={s.matrix__avg} key={v * Math.random()}>{v}</td>)}
-          <td className={s.matrix__avg}>{avgValues.reduce((acc, curr) => acc += curr, 0)}</td>
+          {avgValues.map((v) => <td className={s.matrix__avg} key={v.id}>{v.value}</td>)}
+          <td className={s.matrix__avg}>{avgValues.reduce((acc, curr) => acc += curr.value, 0)}</td>
         </tr>
       </tbody>
     </table>
